@@ -104,6 +104,17 @@ public class TestSample  {
     js.executeScript("arguments[0].click();", closeButton);
   }
 
+  private static void DragAndDrop(WebDriver driver) {
+
+    driver.get("https://formy-project.herokuapp.com/dragdrop");
+
+    WebElement image = driver.findElement(By.id("image"));
+
+    WebElement box = driver.findElement(By.id("box"));
+
+    Actions actions = new Actions(driver);
+    actions.dragAndDrop(image,box).build().perform();
+  }
   public static void main(String[] args) throws InterruptedException {
 
     // Set the property for webdriver.chrome.driver to be the location to your local download of chromedriver
@@ -121,7 +132,9 @@ public class TestSample  {
 //    SwitchToActiveWindow(driver);
 //    SwitchToAlert(driver);
 
-    ExecuteJS(driver);
+//    ExecuteJS(driver);
+
+    DragAndDrop(driver);
 
     //Close the browser
     driver.quit();
