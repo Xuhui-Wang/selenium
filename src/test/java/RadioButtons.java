@@ -24,6 +24,20 @@ public class RadioButtons {
     radioButton3.click();
     Thread.sleep(1000);
 
+    driver.get("https://formy-project.herokuapp.com/checkbox");
+
+    WebElement checkbox1 = driver.findElement(By.id("checkbox-1"));
+    checkbox1.click();
+    Thread.sleep(1000);
+
+    WebElement cb2 = driver.findElement(By.cssSelector("input[value='checkbox-2']"));
+    cb2.click();
+    Thread.sleep(1000);
+
+    WebElement cb3 = driver.findElement(By.xpath("//*[@id=\"checkbox-3\"]"));
+    cb3.click();
+    Thread.sleep(1000);
+
     driver.quit();
   }
 }
