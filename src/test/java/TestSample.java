@@ -1,3 +1,4 @@
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -60,6 +61,36 @@ public class TestSample  {
     Thread.sleep(1000);
   }
 
+  private static void SwitchToActiveWindow(WebDriver driver) throws InterruptedException {
+
+    driver.get("https://formy-project.herokuapp.com/switch-window");
+
+    WebElement newTabButton = driver.findElement(By.id("new-tab-button"));
+    newTabButton.click();
+
+    String originalHandle = driver.getWindowHandle();
+
+    for(String handle1: driver.getWindowHandles()) {
+      driver.switchTo().window(handle1);
+      Thread.sleep(1000);
+    }
+
+    Thread.sleep(1000);
+    driver.switchTo().window(originalHandle);
+  }
+
+  private static void SwitchToAlert(WebDriver driver) throws InterruptedException {
+
+    driver.get("https://formy-project.herokuapp.com/switch-window");
+
+    WebElement alertButton = driver.findElement(By.id("alert-button"));
+    alertButton.click();
+
+    Thread.sleep(1000);
+    Alert alert = driver.switchTo().alert();
+    alert.accept();
+  }
+
   public static void main(String[] args) throws InterruptedException {
 
     // Set the property for webdriver.chrome.driver to be the location to your local download of chromedriver
@@ -72,7 +103,10 @@ public class TestSample  {
 
 //    autoComplete(driver);
 
-    scrollToClass(driver);
+//    scrollToClass(driver);
+
+//    SwitchToActiveWindow(driver);
+    SwitchToAlert(driver);
 
     //Close the browser
     driver.quit();
